@@ -28,11 +28,12 @@ def click(row: int, col: int):
     :param col: номер столбца
     """
     global count_x
+    global game
     if game and game_field[row][col]['text'] == ' ':
         game_field[row][col]['text'] = 'X'
         count_x += 1
         check_win('X')
-        if game and count_x < 5:
+        if game or count_x < 5:
             bot.bot_move()
             check_win('O')
 
@@ -43,9 +44,13 @@ def check_win(symbol: str):
     :param symbol: крестик или нолик, котрый находится в проверяемой клетке
     """
     def check_line(x1, x2, x3, symbol):
+        global game
         if x1['text'] == x2['text'] == x3['text'] == symbol and symbol == 'X':
-            x1['background'] = x2['background'] = x3['background'] = 'pink'
-            global game
+            x1['background'] = x2['background'] = x3['background'] = 'green'
+            game = False
+            return game
+        elif x1['text'] == x2['text'] == x3['text'] == symbol and symbol == 'O':
+            x1['background'] = x2['background'] = x3['background'] = 'red'
             game = False
             return game
 

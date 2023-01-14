@@ -19,5 +19,3 @@ for row in range(3):
     game_button = Button(root, text="NEW GAME", command=game.new_game)
     game_button.grid(row=3, column=0, columnspan=3, sticky='nsew')
 
-
-root.mainloop()
