@@ -35,48 +35,48 @@ def player_move():
 
 def lucky_move(x1, x2, x3, sym):
     res = False
-    if x1 == x2 == sym and x3 not in 'XO':
+    if position[x1] == position[x2] == sym and position[x3] not in 'XO':
         print('Ход бота:')
-        x3 = 'O'
+        position[x3] = 'O'
         draw_game_field(position)
         res = True
-    elif x1 == x3 == sym and x2 not in 'XO':
+    elif position[x1] == position[x3] == sym and position[x2] not in 'XO':
         print('Ход бота:')
-        x2 = "O"
+        position[x2] = 'O'
         draw_game_field(position)
         res = True
-    elif x3 == x2 == sym and x1 not in 'XO':
+    elif position[x2] == position[x3] == sym and position[x1] not in 'XO':
         print('Ход бота:')
-        x1 = "O"
+        position[x1] = 'O'
         draw_game_field(position)
         res = True
     return res
 
 
 def bot_move():
-    if lucky_move(position[0], position[4], position[8], 'O'):
+    if lucky_move(0, 4, 8, 'O'):
         return
-    elif lucky_move(position[6], position[4], position[2], 'O'):
+    elif lucky_move(6, 4, 2, 'O'):
         return
-    elif lucky_move(position[0], position[1], position[2], 'O') or \
-            lucky_move(position[3], position[4], position[5], "O") or \
-            lucky_move(position[6], position[7], position[8], "O"):
+    elif lucky_move(0, 1, 2, 'O') or \
+            lucky_move(3, 4, 5, "O") or \
+            lucky_move(6, 7, 8, "O"):
         return
-    elif lucky_move(position[0], position[3], position[6], 'O') or \
-            lucky_move(position[1], position[4], position[7], "O") or \
-            lucky_move(position[2], position[5], position[8], "O"):
+    elif lucky_move(0, 3, 6, 'O') or \
+            lucky_move(1, 4, 7, "O") or \
+            lucky_move(2, 5, 8, "O"):
         return
-    elif lucky_move(position[0], position[4], position[8], 'X'):
+    elif lucky_move(0, 4, 8, 'X'):
         return
-    elif lucky_move(position[6], position[4], position[2], 'X'):
+    elif lucky_move(6, 4, 2, 'X'):
         return
-    elif lucky_move(position[0], position[1], position[2], 'X') or \
-            lucky_move(position[3], position[4], position[5], "X") or \
-            lucky_move(position[6], position[7], position[8], "X"):
+    elif lucky_move(0, 1, 2, 'X') or \
+            lucky_move(3, 4, 5, "X") or \
+            lucky_move(6, 7, 8, "X"):
         return
-    elif lucky_move(position[0], position[3], position[6], 'X') or \
-            lucky_move(position[1], position[4], position[7], "X") or \
-            lucky_move(position[2], position[5], position[8], "X"):
+    elif lucky_move(0, 3, 6, 'X') or \
+            lucky_move(1, 4, 7, "X") or \
+            lucky_move(2, 5, 8, "X"):
         return
     else:
         while True:
@@ -134,7 +134,8 @@ def new_game():
         check_win(position)
         if not game:
             return
-        if game and count_x == 5:
+        if count_x == 4:
+            game = False
             print("Игра окончена! Ничья!")
             return
 
