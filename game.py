@@ -32,10 +32,17 @@ def click(row: int, col: int):
     if game and game_field[row][col]['text'] == ' ':
         game_field[row][col]['text'] = 'X'
         count_x += 1
+        if count_x == 5:
+            for i in range(3):
+                for j in range(3):
+                    game_field[i][j]['background'] = 'yellow'
+            game = False
+            return
         check_win('X')
         if game or count_x < 5:
             bot.bot_move()
             check_win('O')
+
 
 
 def check_win(symbol: str):
