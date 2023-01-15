@@ -48,17 +48,19 @@ def check_win(symbol: str):
         if x1['text'] == x2['text'] == x3['text'] == 'X':
             x1['background'] = x2['background'] = x3['background'] = 'green'
             game = False
-            return game
         elif x1['text'] == x2['text'] == x3['text'] == 'O':
             x1['background'] = x2['background'] = x3['background'] = 'red'
             game = False
-            return game
+        else:
+            game = True
+        return game
 
     check_line(game_field[0][0], game_field[1][1], game_field[2][2])
     check_line(game_field[0][2], game_field[1][1], game_field[2][0])
     for i in range(3):
         check_line(game_field[i][0], game_field[i][1], game_field[i][2])
-        check_line(game_field[0][i], game_field[1][i], game_field[2][i])
+    for j in range(3):
+        check_line(game_field[0][j], game_field[1][j], game_field[2][j])
 
 
 
