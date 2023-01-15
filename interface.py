@@ -4,7 +4,6 @@ import game
 
 root = Tk()
 root.title('Tic-Tac-Toe')
-root.resizable(width=False, height=False)
 
 for row in range(3):
     line = []

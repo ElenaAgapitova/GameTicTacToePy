@@ -60,7 +60,8 @@ def bot_move():
             return
 
     while True:
-        i, j = random.randint(0, 1), random.randint(0, 1)
-        if game.game_field[i][j]['text'] == ' ':
-            game.game_field[i][j]['text'] = 'O'
+        k = random.randint(0, 1)
+        j = random.randint(0, 1)
+        if game.game_field[k][j]['text'] == ' ':
+            game.game_field[k][j]['text'] = 'O'
             break
